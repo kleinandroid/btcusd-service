@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "btcusd-agregator-service", "btcusd-agregator-service\btcusd-agregator-service.csproj", "{BD5D36AA-9B90-462C-9A9B-28D178EA53CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD5D36AA-9B90-462C-9A9B-28D178EA53CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD5D36AA-9B90-462C-9A9B-28D178EA53CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD5D36AA-9B90-462C-9A9B-28D178EA53CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD5D36AA-9B90-462C-9A9B-28D178EA53CF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {575CC77B-2285-4723-84C0-FCB3BCC96E64}
+	EndGlobalSection
+EndGlobal

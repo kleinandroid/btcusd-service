@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "dHso61ujvhmFEPB2SJg1l/35O67HKYYDOiBY1OvPYI8=",
+  "Source": "btcusd-agregator-service",
+  "BasePath": "_content/btcusd-agregator-service",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
