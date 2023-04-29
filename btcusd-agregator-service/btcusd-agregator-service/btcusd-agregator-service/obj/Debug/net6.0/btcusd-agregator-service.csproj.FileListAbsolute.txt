@@ -30,3 +30,4 @@ C:\Repo\BTCUSD-SERVICE\btcusd-agregator-service\btcusd-agregator-service\btcusd-
 C:\Repo\BTCUSD-SERVICE\btcusd-agregator-service\btcusd-agregator-service\btcusd-agregator-service\obj\Debug\net6.0\btcusd-agregator-service.pdb
 C:\Repo\BTCUSD-SERVICE\btcusd-agregator-service\btcusd-agregator-service\btcusd-agregator-service\obj\Debug\net6.0\btcusd-agregator-service.genruntimeconfig.cache
 C:\Repo\BTCUSD-SERVICE\btcusd-agregator-service\btcusd-agregator-service\btcusd-agregator-service\obj\Debug\net6.0\ref\btcusd-agregator-service.dll
+C:\Repo\BTCUSD-SERVICE\btcusd-agregator-service\btcusd-agregator-service\btcusd-agregator-service\bin\Debug\net6.0\Newtonsoft.Json.dll
