@@ -1,24 +1,28 @@
 using btcusd_agregator_service;
 using btcusd_agregator_service.Interface;
 using btcusd_agregator_service.Strategy;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMemoryCache();
-
-// Register the default calculation avarage strategy
-builder.Services.AddSingleton<IPriceAggregatorStrategy, AveragePriceStrategy>();
+builder.Services.TryAdd(ServiceDescriptor.Singleton<IMemoryCache, MemoryCache>());
+builder.Services.AddSingleton<IPriceAggregatorStrategy, AveragePriceStrategy>(); // Register the default calculation avarage strategy
+builder.Services.AddDbContext<BtcUsdServiceDBContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("SqlLiteConnectionString")));
 builder.Services.AddSingleton<IBtcUsdService, BtcUsdService>();
+builder.Services.AddControllers(options =>
+{
+    options.ModelBinderProviders.Insert(0, new DateTimeModelBinderProvider(new[] { "M/d/yyyy h:mm:ss tt" }));
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

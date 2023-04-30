@@ -38,7 +38,7 @@ namespace btcusd_agregator_service
                 averagePrice = CalculateAverage(prices);
 
                 // Store the average price in the cache
-                _cache.Set(hourKey, averagePrice, TimeSpan.FromHours(1));
+                _cache.Set(hourKey, averagePrice);
 
 // Store the average price in SQLite
 //using var connection = new SqliteConnection("Data Source=prices.db");

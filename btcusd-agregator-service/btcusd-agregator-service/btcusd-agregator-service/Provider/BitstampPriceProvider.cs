@@ -10,21 +10,13 @@ namespace btcusd_agregator_service.Provider
 {
     public class BitstampPriceProvider : IPriceProvider
     {
-        const string currencyPair = "btcusd";
         public async Task<decimal> GetPriceAsync(DateTime timePoint)
         {
-            string apiUrl = $"https://www.bitstamp.net/api/v2/ohlc/{currencyPair}/";
-            string timeFrame = "3600";
-
+            string apiUrl = $"https://www.bitstamp.net/api/v2/ohlc/btcusd/";
             using HttpClient httpClient = new HttpClient();
-
-            // Calculate the UNIX timestamp for the time-point
-            long unixTimestamp = new DateTimeOffset(timePoint).ToUnixTimeSeconds();
-
-            // Construct the request URL
-            string requestUrl = $"{apiUrl}?step={timeFrame}&limit=1&start={unixTimestamp}";
-
-            // Send a GET request to the API
+            long unixTimestampSecounds = new DateTimeOffset(timePoint).ToUnixTimeSeconds();
+            var timeFrameSecounds = 60 * 60;
+            string requestUrl = $"{apiUrl}?step={timeFrameSecounds}&limit=1&start={unixTimestampSecounds}";
             HttpResponseMessage response = await httpClient.GetAsync(requestUrl);
 
             if (response.IsSuccessStatusCode)

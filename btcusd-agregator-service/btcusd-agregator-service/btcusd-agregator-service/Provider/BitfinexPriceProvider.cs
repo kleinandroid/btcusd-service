@@ -1,7 +1,6 @@
 ﻿using btcusd_agregator_service.Interface;
 using btcusd_agregator_service.Models;
 using Newtonsoft.Json;
-using static System.Collections.Specialized.BitVector32;
 
 namespace btcusd_agregator_service.Provider
 {
@@ -9,7 +8,11 @@ namespace btcusd_agregator_service.Provider
     {
         public async Task<decimal> GetPriceAsync(DateTime timePoint)
         {
-            var url = $"https://api-pub.bitfinex.com/v2/candles/trade:1h:tBTCUSD/hist";
+            var startTimestampMillisecounds = new DateTimeOffset(timePoint).ToUnixTimeMilliseconds();
+            var timeFrameMillisecounds = 60 * 60 * 1000;
+            var endTimestampMillisecounds = startTimestampMillisecounds + timeFrameMillisecounds;
+
+            var url = $"https://api-pub.bitfinex.com/v2/candles/trade:1h:tBTCUSD/hist?start={startTimestampMillisecounds}&end={endTimestampMillisecounds}&limit=1";
             using HttpClient httpClient = new HttpClient();
             var response = await httpClient.GetAsync(url);
 
@@ -32,7 +35,7 @@ namespace btcusd_agregator_service.Provider
                 Volume = Convert.ToDecimal(c[5])
             }).ToList();
             var candle = candles.FirstOrDefault();
-            //var candle = candles.FirstOrDefault(c => c.Timestamp <= timePoint);
+
             if (candle == null)
             {
                 throw new Exception("No price data available for the specified time point.");
@@ -40,6 +43,5 @@ namespace btcusd_agregator_service.Provider
 
             return candle.Close;
         }
-        
     }
 }

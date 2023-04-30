@@ -1,5 +1,7 @@
 ﻿using btcusd_agregator_service.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel;
 
 namespace btcusd_agregator_service.Controllers
 {
@@ -15,12 +17,9 @@ namespace btcusd_agregator_service.Controllers
         }
 
         [HttpGet(Name = "FetchPrice")]
-        //[FromQuery][RegularExpression(@"^([01][0-9]|2[0-3])$")] string hour
-        public async Task<decimal> Get()
+        public async Task<decimal> Get([FromQuery][BindRequired][DefaultValue("4/1/2023 12:00:00 PM")] DateTime specificHour)
         {
-            DateTime specificDateTime = new DateTime(2023, 04, 1, 12, 30, 0);
-            
-            return await _btcUsdService.GetAveragePriceAsync(specificDateTime);
+            return await _btcUsdService.GetAveragePriceAsync(specificHour);
         }
     }
 }
