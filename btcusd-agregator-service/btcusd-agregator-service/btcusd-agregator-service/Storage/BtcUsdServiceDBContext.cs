@@ -18,6 +18,12 @@ namespace btcusd_agregator_service.Storage
                     v => v.Date.AddHours(v.Hour),
                     v => DateTime.SpecifyKind(v, DateTimeKind.Utc)
                 );
+            modelBuilder.Entity<TimePrice>()
+                .Property(x => x.BtcUsdPrice)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => decimal.Parse(v)
+    );
         }
 
         public DbSet<TimePrice> Prices { get; set; }
