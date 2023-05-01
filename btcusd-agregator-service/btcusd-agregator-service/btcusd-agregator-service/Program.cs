@@ -1,5 +1,6 @@
 using btcusd_agregator_service;
 using btcusd_agregator_service.Interface;
+using btcusd_agregator_service.Storage;
 using btcusd_agregator_service.Strategy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
@@ -14,8 +15,9 @@ builder.Services.AddMemoryCache();
 builder.Services.TryAdd(ServiceDescriptor.Singleton<IMemoryCache, MemoryCache>());
 builder.Services.AddSingleton<IPriceAggregatorStrategy, AveragePriceStrategy>(); // Register the default calculation avarage strategy
 builder.Services.AddDbContext<BtcUsdServiceDBContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("SqlLiteConnectionString")));
-builder.Services.AddSingleton<IBtcUsdService, BtcUsdService>();
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnectionString")));
+builder.Services.AddScoped<IBtcUsdService, BtcUsdService>();
+builder.Services.AddScoped<ITimePriceRepository, TimePriceRepository>();
 builder.Services.AddControllers(options =>
 {
     options.ModelBinderProviders.Insert(0, new DateTimeModelBinderProvider(new[] { "M/d/yyyy h:mm:ss tt" }));
@@ -23,14 +25,8 @@ builder.Services.AddControllers(options =>
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
+app.UseSwagger();
+app.UseSwaggerUI();
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

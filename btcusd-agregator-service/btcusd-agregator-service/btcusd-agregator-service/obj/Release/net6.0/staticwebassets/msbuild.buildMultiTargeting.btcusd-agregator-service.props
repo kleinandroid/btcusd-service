@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\btcusd-agregator-service.props" />
+</Project>

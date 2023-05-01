@@ -2,7 +2,7 @@
 
 namespace btcusd_agregator_service.Strategy
 {
-    public class AveragePriceStrategy: IPriceAggregatorStrategy
+    public class AveragePriceStrategy : IPriceAggregatorStrategy
     {
         public decimal Calculate(List<decimal> prices)
         {

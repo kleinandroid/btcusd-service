@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  btcusd-persist-service: 
+    build: ./btcusd-persist-service
+    #context: ./btcusd-persist-service
+    #dockerfile: Dockerfile
+    ports:
+      - "5001:1433"
+    volumes:
+      - mssql-data:/var/opt/mssql
+
+  btcusd-agregator-service:
+    build: ./btcusd-agregator-service/btcusd-agregator-service/
+    ports:
+      - "5000:80"
+    depends_on:
+      - btcusd-persist-service
+
+volumes:
+  mssql-data:

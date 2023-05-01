@@ -1,10 +1,5 @@
 ﻿using btcusd_agregator_service.Interface;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using Newtonsoft.Json.Linq;
 
 namespace btcusd_agregator_service.Provider
 {
